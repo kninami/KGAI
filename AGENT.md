@@ -128,11 +128,15 @@ updated: 2026-07-15
 
 ## Ingest Workflow
 
+실행 절차는 `.claude/skills/ingest/SKILL.md` 에 스킬로 등록되어 있다. 이 절은 정책 기준이고, 스킬은 그 기준을 실행 단계로 옮긴 것이다. 둘이 어긋나면 이 문서가 기준이다.
+
 사용자가 할 일:
 
 ```text
 /ingest raw/reports/새문서.pdf
 ```
+
+자연어("raw에 새로 넣은 거 ingest 해줘")로도 동일하게 발동한다.
 
 AI가 할 일:
 
@@ -187,12 +191,15 @@ AI가 할 일:
 
 ## Review Workflow
 
+실행 절차는 `.claude/skills/review/SKILL.md` 에, **출력 서식은 `.claude/skills/review/TEMPLATE.md` 에** 등록되어 있다. 모든 검토 결과는 그 서식을 따른다.
+
 `/review` 요청 시:
 
 1. 산출물 유형에 맞는 canonical checklist 항목을 대조한다.
 2. 위반 가능성이 있으면 canonical guideline 원칙으로 설명한다.
 3. 용어 문제는 `terms/`에서 교정한다.
-4. 사용자가 원하면 어떤 source가 그 판단을 강화했는지 `sources/`까지 추적해 보여준다.
+4. source가 그 판단을 강화했는지 `sources/`까지 추적해 보여준다.
+5. 마지막으로 1~4의 내용을 바탕으로 수정한 결과물을 제시한다.
 
 ---
 
